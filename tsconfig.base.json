@@ -14,7 +14,35 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": false,
-    "paths": {}
+    "paths": {
+      "@ecommerce-challenge-v1/catalog-model": [
+        "./libs/domain/catalog/model/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/catalog-data-access": [
+        "./libs/domain/catalog/data-access/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/catalog-feature": [
+        "./libs/domain/catalog/feature/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/catalog-ui": [
+        "./libs/domain/catalog/ui/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/cart-model": [
+        "./libs/domain/cart/model/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/cart-data-access": [
+        "./libs/domain/cart/data-access/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/cart-feature": [
+        "./libs/domain/cart/feature/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/cart-ui": ["./libs/domain/cart/ui/src/index.ts"],
+      "@ecommerce-challenge-v1/core-model": ["./libs/core/model/src/index.ts"],
+      "@ecommerce-challenge-v1/shared-pipes": [
+        "./libs/shared/pipes/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/shared-ui": ["./libs/shared/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

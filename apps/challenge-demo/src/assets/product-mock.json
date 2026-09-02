@@ -1,0 +1,103 @@
+{
+  "code": 200,
+  "status": "success",
+  "message": "Products retrieved successfully",
+  "data": [
+    {
+      "id": "p1",
+      "name": "Auriculares Inalámbricos Pro",
+      "price": 89.99,
+      "category": "electronics",
+      "imageUrl": "https://picsum.photos/seed/p1/400",
+      "description": "Cancelación de ruido activa, 30h de batería.",
+      "stock": 15
+    },
+    {
+      "id": "p2",
+      "name": "Teclado Mecánico RGB",
+      "price": 129.5,
+      "category": "electronics",
+      "imageUrl": "https://picsum.photos/seed/p2/400",
+      "description": "Switches azules, retroiluminación personalizable.",
+      "stock": 8
+    },
+    {
+      "id": "p3",
+      "name": "Camiseta Algodón Orgánico",
+      "price": 24.99,
+      "category": "clothing",
+      "imageUrl": "https://picsum.photos/seed/p3/400",
+      "description": "100% algodón orgánico, corte regular.",
+      "stock": 40
+    },
+    {
+      "id": "p4",
+      "name": "Zapatillas Running Air",
+      "price": 74.0,
+      "category": "clothing",
+      "imageUrl": "https://picsum.photos/seed/p4/400",
+      "description": "Amortiguación reactiva para largas distancias.",
+      "stock": 0
+    },
+    {
+      "id": "p5",
+      "name": "Cafetera Espresso Automática",
+      "price": 249.0,
+      "category": "home",
+      "imageUrl": "https://picsum.photos/seed/p5/400",
+      "description": "Molinillo integrado, 15 bares de presión.",
+      "stock": 5
+    },
+    {
+      "id": "p6",
+      "name": "Set de Sartenes Antiadherentes",
+      "price": 59.9,
+      "category": "home",
+      "imageUrl": "https://picsum.photos/seed/p6/400",
+      "description": "3 piezas, aptas para inducción.",
+      "stock": 20
+    },
+    {
+      "id": "p7",
+      "name": "Monitor 27'' 4K",
+      "price": 349.99,
+      "category": "electronics",
+      "imageUrl": "https://picsum.photos/seed/p7/400",
+      "description": "Panel IPS, 144Hz, HDR10.",
+      "stock": 3
+    },
+    {
+      "id": "p8",
+      "name": "Mochila Urbana Impermeable",
+      "price": 45.5,
+      "category": "accessories",
+      "imageUrl": "https://picsum.photos/seed/p8/400",
+      "description": "Compartimento para laptop de 15''.",
+      "stock": 25
+    },
+    {
+      "id": "p9",
+      "name": "Reloj Deportivo GPS",
+      "price": 199.0,
+      "category": "accessories",
+      "imageUrl": "https://picsum.photos/seed/p9/400",
+      "description": "Monitor de ritmo cardíaco, resistente al agua.",
+      "stock": 12
+    },
+    {
+      "id": "p10",
+      "name": "Chaqueta Impermeable Outdoor",
+      "price": 110.0,
+      "category": "clothing",
+      "imageUrl": "https://picsum.photos/seed/p10/400",
+      "description": "Membrana transpirable, sellado en costuras.",
+      "stock": 7
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "pageSize": 10,
+    "totalItems": 10,
+    "totalPages": 1
+  }
+}

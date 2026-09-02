@@ -1,0 +1,86 @@
+<!-- ===== CART ITEM ===== -->
+<div
+  class="group flex items-center gap-4 rounded-xl border border-emerald-100/50 bg-white/50 p-4 backdrop-blur-sm transition-all duration-300 hover:border-emerald-200/70 hover:shadow-md hover:shadow-emerald-500/5">
+
+  <!-- ===== PRODUCT IMAGE ===== -->
+  <div
+    class="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-emerald-50/50 to-teal-50/30 ring-1 ring-emerald-100/50">
+    <img
+      [src]="item().product.imageUrl"
+      [alt]="item().product.name"
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  </div>
+  <!-- ===== END: PRODUCT IMAGE ===== -->
+
+  <!-- ===== PRODUCT INFO ===== -->
+  <div class="min-w-0 flex-1">
+    <p class="truncate text-sm font-semibold text-slate-800">{{ item().product.name }}</p>
+    <div class="mt-0.5 flex flex-wrap items-center gap-2">
+      <span class="text-xs font-medium text-emerald-600">{{ item().product.category }}</span>
+      <span class="text-[10px] text-emerald-300/50">·</span>
+      <span class="text-[10px] text-emerald-400/50">Agregado {{ item().addedAt | timeAgo }}</span>
+    </div>
+  </div>
+  <!-- ===== END: PRODUCT INFO ===== -->
+
+  <!-- ===== QUANTITY CONTROLS ===== -->
+  <div class="flex items-center gap-2">
+    <!-- Decrease button -->
+    <button
+      (click)="quantityChange.emit(item().quantity - 1)"
+      [disabled]="item().quantity <= 1"
+      class="flex h-7 w-7 items-center justify-center rounded-md border border-emerald-200/50 text-emerald-400/50 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+      aria-label="Disminuir cantidad"
+    >
+      <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+      </svg>
+    </button>
+
+    <!-- Quantity input -->
+    <input
+      type="number"
+      [value]="item().quantity"
+      [max]="item().product.stock"
+      min="1"
+      (change)="quantityChange.emit(+$any($event.target).value)"
+      class="h-7 w-12 rounded-md border border-emerald-200/50 bg-white/50 text-center text-sm font-medium text-slate-700 transition-all duration-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/20"
+    />
+
+    <!-- Increase button -->
+    <button
+      (click)="quantityChange.emit(item().quantity + 1)"
+      [disabled]="item().quantity >= item().product.stock"
+      class="flex h-7 w-7 items-center justify-center rounded-md border border-emerald-200/50 text-emerald-400/50 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+      aria-label="Aumentar cantidad"
+    >
+      <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+      </svg>
+    </button>
+  </div>
+  <!-- ===== END: QUANTITY CONTROLS ===== -->
+
+  <!-- ===== SUBTOTAL ===== -->
+  <div class="min-w-[70px] text-right">
+    <span class="text-sm font-bold text-emerald-700">
+      {{ item().product.price * item().quantity | currency }}
+    </span>
+  </div>
+  <!-- ===== END: SUBTOTAL ===== -->
+
+  <!-- ===== REMOVE BUTTON ===== -->
+  <button
+    (click)="remove.emit(item().product.id)"
+    class="flex h-8 w-8 items-center justify-center rounded-lg text-emerald-300/30 transition-all duration-200 hover:bg-red-50/80 hover:text-red-500 hover:scale-110"
+    aria-label="Quitar producto"
+  >
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <!-- ===== END: REMOVE BUTTON ===== -->
+
+</div>
+<!-- ===== END: CART ITEM ===== -->
