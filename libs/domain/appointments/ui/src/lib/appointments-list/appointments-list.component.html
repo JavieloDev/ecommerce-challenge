@@ -1,0 +1,214 @@
+<!-- ===== MOBILE APPOINTMENT CARDS =====-->
+<ul class="grid gap-3 md:hidden">
+  @for (appointment of appointments(); track appointment.id) {
+    <li class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+      <!-- ===== APPOINTMENT HEADER ===== -->
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="font-semibold text-slate-900">
+            {{ appointment.client.fullName }}
+          </p>
+          <p class="text-sm text-slate-600">
+            {{ appointment.startAt | date: 'shortTime' }}
+            – {{ appointment.endAt | date: 'shortTime' }}
+            · {{ appointment.location.name }}
+          </p>
+        </div>
+        <lib-status-badge [status]="appointment.status" />
+      </div>
+      <!-- ===== END: APPOINTMENT HEADER ===== -->
+
+      <!-- ===== SERVICES LIST ===== -->
+      <ul class="mt-3 flex flex-col gap-2">
+        @for (item of appointment.service; track item.id) {
+          <li
+            class="flex items-center justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2"
+          >
+            <div class="min-w-0">
+              <p class="truncate text-sm font-medium text-slate-900">
+                {{ item.name }}
+              </p>
+              <p class="text-xs text-slate-500">
+                {{ item.teamMember.fullName }}
+                <span class="text-slate-400">· {{ item.teamMember.role }}</span>
+              </p>
+            </div>
+          </li>
+        }
+      </ul>
+      <!-- ===== END: SERVICES LIST ===== -->
+
+      <!-- ===== STATUS UPDATE CONTROL ===== -->
+      <label
+        class="mt-3 block text-sm font-medium text-slate-700"
+        [for]="'status-' + appointment.id"
+      >
+        Update status
+      </label>
+      <select
+        [id]="'status-' + appointment.id"
+        class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 disabled:opacity-50"
+        [disabled]="updatingIds().has(appointment.id)"
+        [attr.aria-busy]="updatingIds().has(appointment.id)"
+        [value]="appointment.status"
+        (change)="onStatusChange(appointment, $event)"
+      >
+        @for (item of statuses; track item) {
+          <option [value]="item">{{ labels[item] }}</option>
+        }
+      </select>
+      <!-- ===== SAVING INDICATOR ===== -->
+      @if (updatingIds().has(appointment.id)) {
+        <p class="mt-1 text-xs text-slate-500">Saving…</p>
+      }
+      <!-- ===== END: STATUS UPDATE CONTROL ===== -->
+    </li>
+  }
+</ul>
+<!-- ===== END: MOBILE APPOINTMENT CARDS ===== -->
+
+
+<!-- ===== DESKTOP APPOINTMENT TABLE ===== -->
+<div class="hidden md:block">
+  <table class="w-full table-fixed divide-y divide-slate-200 text-left text-sm">
+    <!-- ===== TABLE HEADER ===== -->
+    <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+    <tr>
+      <th class="w-36 px-4 py-3 font-medium">Time</th>
+      <th class="w-36 px-4 py-3 font-medium">Client</th>
+      <th class="w-36 px-4 py-3 font-medium">Services &amp; team</th>
+      <th class="w-28 px-4 py-3 font-medium">Location</th>
+      <th class="w-28 px-4 py-3 font-medium">Status</th>
+      <th class="w-36 px-4 py-3 font-medium">Update</th>
+    </tr>
+    </thead>
+    <!-- ===== END: TABLE HEADER ===== -->
+
+    <!-- ===== TABLE BODY ===== -->
+    <tbody class="divide-y divide-slate-100 bg-white">
+      @for (appointment of appointments(); track appointment.id) {
+        <tr class="align-top hover:bg-slate-50/60">
+          <!-- ===== TIME COLUMN ===== -->
+          <td class="px-4 py-4 text-slate-700">
+            <div class="flex flex-col gap-0.5 font-medium tabular-nums">
+              <span class="whitespace-nowrap text-sm text-slate-900">
+                {{ appointment.startAt | date: 'shortTime' }}
+              </span>
+              <span class="whitespace-nowrap text-xs text-slate-500">
+                to {{ appointment.endAt | date: 'shortTime' }}
+              </span>
+            </div>
+          </td>
+          <!-- ===== END: TIME COLUMN ===== -->
+
+          <!-- ===== CLIENT COLUMN ===== -->
+          <td class="truncate px-4 py-4 font-medium text-slate-900">
+            {{ appointment.client.fullName }}
+          </td>
+          <!-- ===== END: CLIENT COLUMN ===== -->
+
+          <!-- ===== SERVICES & TEAM COLUMN ===== -->
+          <td class="px-4 py-4">
+            <div class="group relative inline-block">
+              <button
+                type="button"
+                class="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-3 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900"
+              >
+                <span class="flex -space-x-2">
+                  @for (item of appointment.service.slice(0, 3); track item.id) {
+                    <span
+                      class="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-slate-900 text-[10px] font-semibold text-white"
+                    >
+                      {{ item.teamMember.fullName.charAt(0) }}
+                    </span>
+                  }
+                </span>
+                <span class="text-xs font-medium text-slate-700">
+                  {{ appointment.service.length }}
+                  service{{ appointment.service.length > 1 ? 's' : '' }}
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-3 w-3 text-slate-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              <div
+                class="invisible absolute left-0 top-full z-20 mt-2 w-72 origin-top-left scale-95 rounded-xl border border-slate-200 bg-white p-3 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:scale-100 group-hover:opacity-100 group-focus-within:visible group-focus-within:scale-100 group-focus-within:opacity-100"
+              >
+                <ul class="flex flex-col gap-2.5">
+                  @for (item of appointment.service; track item.id) {
+                    <li class="flex items-center justify-between gap-2">
+                      <div class="flex min-w-0 items-center gap-2">
+                        <span
+                          class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-semibold text-white"
+                        >
+                          {{ item.teamMember.fullName.charAt(0) }}
+                        </span>
+                        <div class="min-w-0">
+                          <p class="truncate text-xs font-medium text-slate-900">
+                            {{ item.name }}
+                          </p>
+                          <p class="truncate text-[11px] text-slate-500">
+                            {{ item.teamMember.fullName }} · {{ item.teamMember.role }}
+                          </p>
+                        </div>
+                      </div>
+                      <span class="shrink-0 text-xs font-medium text-slate-700">
+                        {{ item.price | currency }}
+                      </span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </td>
+          <!-- ===== END: SERVICES & TEAM COLUMN ===== -->
+
+          <!-- ===== LOCATION COLUMN ===== -->
+          <td class="truncate px-4 py-4 text-slate-700">
+            {{ appointment.location.name }}
+          </td>
+          <!-- ===== END: LOCATION COLUMN ===== -->
+
+          <!-- ===== STATUS BADGE COLUMN ===== -->
+          <td class="px-4 py-4">
+            <lib-status-badge [status]="appointment.status" />
+          </td>
+          <!-- ===== END: STATUS BADGE COLUMN ===== -->
+
+          <!-- ===== STATUS UPDATE COLUMN ===== -->
+          <td class="px-4 py-4">
+            <!-- Hidden label for screen readers -->
+            <label class="sr-only" [for]="'status-desk-' + appointment.id">
+              Update status for {{ appointment.client.fullName }}
+            </label>
+            <select
+              [id]="'status-desk-' + appointment.id"
+              class="w-full rounded-lg border border-slate-300 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 disabled:opacity-50"
+              [disabled]="updatingIds().has(appointment.id)"
+              [attr.aria-busy]="updatingIds().has(appointment.id)"
+              [value]="appointment.status"
+              (change)="onStatusChange(appointment, $event)"
+            >
+              @for (item of statuses; track item) {
+                <option [value]="item">{{ labels[item] }}</option>
+              }
+            </select>
+          </td>
+          <!-- ===== END: STATUS UPDATE COLUMN ===== -->
+        </tr>
+      }
+    </tbody>
+    <!-- ===== END: TABLE BODY ===== -->
+  </table>
+</div>
+<!-- ===== END: DESKTOP APPOINTMENT TABLE ===== -->

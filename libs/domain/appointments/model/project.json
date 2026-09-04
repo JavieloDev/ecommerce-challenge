@@ -1,9 +1,9 @@
 {
-  "name": "catalog-model",
+  "name": "model",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/domain/catalog/model/src",
+  "sourceRoot": "libs/domain/appointments/model/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["domain:appointments type:model"],
   "// targets": "to see all targets run: nx show project model --web",
   "targets": {}
 }

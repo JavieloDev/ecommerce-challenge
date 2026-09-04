@@ -1,0 +1,13 @@
+{
+  "name": "feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/domain/appointments/feature/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["domain:appointments type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
