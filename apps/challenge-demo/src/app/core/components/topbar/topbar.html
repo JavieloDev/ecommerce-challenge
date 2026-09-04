@@ -4,8 +4,8 @@
 
     <!-- ===== LOGO ===== -->
     <a
-      routerLink="/products"
       class="group flex items-center gap-3 text-xl font-bold text-slate-900"
+      routerLink="/products"
     >
       <div class="relative">
         <div
@@ -16,10 +16,10 @@
         >
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
             />
           </svg>
         </span>
@@ -31,45 +31,6 @@
     </a>
     <!-- ===== END: LOGO ===== -->
 
-    <!-- ===== RIGHT SECTION ===== -->
-    <div class="flex items-center gap-3">
-
-      <!-- ===== CART BUTTON ===== -->
-      <a
-        routerLink="/cart"
-        class="group relative flex items-center gap-2.5 rounded-full px-4 py-2.5 text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-emerald-100/60 hover:text-slate-900"
-      >
-        <span class="relative">
-          <svg
-            class="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-            />
-          </svg>
-
-          @if (cartFacade.itemsCount() > 0) {
-            <span
-              class="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-[10px] font-bold text-white shadow-lg shadow-emerald-500/30 ring-2 ring-white animate-bounce-in"
-            >
-              {{ cartFacade.itemsCount() }}
-            </span>
-          }
-        </span>
-
-        <!-- Label -->
-        <span class="hidden sm:inline">Carrito</span>
-      </a>
-      <!-- ===== END: CART BUTTON ===== -->
-
-    </div>
-    <!-- ===== END: RIGHT SECTION ===== -->
 
   </div>
 </header>

@@ -8,7 +8,4 @@ import { Topbar } from '../../core/components/topbar/topbar';
   imports: [RouterOutlet, Topbar],
   templateUrl: './home.html',
 })
-export class Home {
-  /** Current year for footer copyright */
-  currentYear = new Date().getFullYear();
-}
+export class Home {}

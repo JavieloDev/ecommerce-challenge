@@ -9,25 +9,18 @@ export const appRoutes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'products',
+        redirectTo: 'appointments',
       },
       {
-        path: 'products',
+        path: 'appointments',
         loadComponent: () =>
-          import('@ecommerce-challenge-v1/catalog-feature').then(
-            (m) => m.ProductListComponent,
-          ),
-      },
-      {
-        path: 'cart',
-        loadComponent: () =>
-          import('@ecommerce-challenge-v1/cart-feature').then(
-            (m) => m.CartPageComponent,
+          import('@ecommerce-challenge-v1/appointments-feature').then(
+            (m) => m.AppointmentsPageComponent,
           ),
       },
       {
         path: '**',
-        redirectTo: 'products',
+        redirectTo: 'appointments',
       },
     ],
   },

@@ -41,7 +41,19 @@
       "@ecommerce-challenge-v1/shared-pipes": [
         "./libs/shared/pipes/src/index.ts"
       ],
-      "@ecommerce-challenge-v1/shared-ui": ["./libs/shared/ui/src/index.ts"]
+      "@ecommerce-challenge-v1/shared-ui": ["./libs/shared/ui/src/index.ts"],
+      "@ecommerce-challenge-v1/appointments-model": [
+        "./libs/domain/appointments/model/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/appointments-data-access": [
+        "./libs/domain/appointments/data-access/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/appointments-feature": [
+        "./libs/domain/appointments/feature/src/index.ts"
+      ],
+      "@ecommerce-challenge-v1/appointments-ui": [
+        "./libs/domain/appointments/ui/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
